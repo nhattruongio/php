@@ -1,5 +1,5 @@
 <?php
-    require_once("config/db.class.php");
+    require_once("./config/db.class.php");
 
     class User{
         
@@ -9,7 +9,7 @@
         public $password;
 
         public function __construct($u_name,$u_email,$u_password){
-            $this->user_name=$name;
+            $this->user_name=$u_name;
             $this->email=$u_email;
             $this->password=$u_password;
         }
@@ -18,7 +18,7 @@
         public function save(){
             $db=new Db();
             $sql="INSERT INTO users (UserName, Email, Password) VALUES('".mysqli_real_escape_string($db->connect(),$this->user_name)."','".mysqli_real_escape_string($db->connect(),$this->email)."','".md5(mysqli_real_escape_string($db->connect(),$this->password))."') ";
-            $result=$db->query_execute($sql);
+            $result= $db->query_execute($sql);
             return $result;
         }
         //kiểm tra đăng nhập

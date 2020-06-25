@@ -56,10 +56,22 @@
                                   <ul class="dropdown-menu">
                                       <li class="nav-item"><a class="nav-link" href="list_product.php">Xem tất cả sản phẩm</a>
                                       <li class="nav-item"><a class="nav-link" href="add_product.php">Thêm sản phẩm</a>
-                                      <li class="nav-item"><a class="nav-link" href="register.php">Đăng ký</a>
-
                                   </ul>
                               </li> 
+                              <?php
+                                session_start();
+                                if(isset($_SESSION['user'])!=""){
+                                    echo '<li class="nav-item active"><a class="nav-link" href="logout.php">Đăng xuất</a></li>';
+                                }else{
+                                    echo'<li class="nav-item submenu dropdown">
+                                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tài khoản</a>
+                                            <ul class="dropdown-menu">
+                                                <li class="nav-item"><a class="nav-link" href="register.php">Đăng ký</a>
+                                                <li class="nav-item"><a class="nav-link" href="login.php">Đăng nhập</a>
+                                            </ul>
+                                        </li>';
+                                }
+                              ?>
                           </ul>
                           <ul class="nav navbar-nav navbar-right">
                               <li class="nav-item"><a href="#" class="cart"><i class="lnr lnr lnr-cart"></i></a></li>

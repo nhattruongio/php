@@ -5,11 +5,11 @@
         header("Location:index.php");
     }
     require_once("./entities/user.class.php");
-    if(isset($_POST['btn_register'])){
-        $u_name = $_POST['txt_name'];
+
+    if(isset($_POST['btn_login'])){
         $u_email = $_POST['txt_email'];
         $u_password = $_POST['txt_password'];
-        $account = new User($u_name,$u_email,$u_password);
+        $account = new User($u_email,$u_password);
         $result = $account ->save();
         if(!$result){
             ?>
@@ -18,7 +18,7 @@
         }
         else{
             
-            $_SESSION["user"] = $u_name;//lưu thông tin session
+            $_SESSION["user"]=$u_name;//lưu thông tin session
             header("Location:index.php");
 
         }
@@ -28,7 +28,7 @@
             <div class="banner_inner d-flex align-items-center">
 				<div class="container">
 					<div class="banner_content text-center">
-						<h2>Đăng ký tài khoản</h2>
+						<h2>Đăng nhập tài khoản</h2>
 						<div class="page_link">
 							<a href="index.php">Trang chủ</a>
 							<a href="register.php">Đăng ký</a>
@@ -39,11 +39,7 @@
         </section>
 <div class="container">
     <div class="jumbotron">
-        <form method="POST">
-            <div class="form-group">
-                <label >Tên người dùng</label>:</label>
-                <input type="text" class="form-control input-sm"  name="txt_name"  required/> 
-            </div>
+        <form method="POST" enctype="multipart/form-data"  >
             <div class="form-group">
                 <label >Email</label>:</label>
                 <input  type="email" class="form-control" name="txt_email"    required/>
@@ -52,7 +48,7 @@
                 <label >Password</label>:</label>
                 <input type="password"  class="form-control" name="txt_password" required/>
             </div>
-            <input type="submit" name="btn_register" class="btn btn-lg btn-primary" value="Đăng ký"></input>
+            <input type="submit" name="btn_login" class="btn btn-lg btn-primary" value="Đăng nhập"></input>
         </form>
     </div>
 </div>
