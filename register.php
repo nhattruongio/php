@@ -6,10 +6,10 @@
     }
     require_once("./entities/user.class.php");
     if(isset($_POST['btn_register'])){
-        $u_name = $_POST['txt_name'];
-        $u_email = $_POST['txt_email'];
-        $u_password = $_POST['txt_password'];
-        $account = new User($u_name,$u_email,$u_password);
+        $user_name = $_POST['txt_name'];
+        $email = $_POST['txt_email'];
+        $password = $_POST['txt_password'];
+        $account = new User($user_name,$email,$password);
         $result = $account ->save();
         if(!$result){
             ?>

@@ -2,7 +2,6 @@
     require_once("./config/db.class.php");
 
     class User{
-        
         public $user_id;
         public $user_name;
         public $email;
@@ -17,8 +16,15 @@
         //Lưu 
         public function save(){
             $db=new Db();
-            $sql="INSERT INTO users (UserName, Email, Password) VALUES('".mysqli_real_escape_string($db->connect(),$this->user_name)."','".mysqli_real_escape_string($db->connect(),$this->email)."','".md5(mysqli_real_escape_string($db->connect(),$this->password))."') ";
-            $result= $db->query_execute($sql);
+            $password = md5($password);
+            // $sql="INSERT INTO users (UserName, Email, Password) VALUES('".mysqli_real_escape_string($db->connect(),$this->user_name)."','".mysqli_real_escape_string($db->connect(),$this->email)."','".md5(mysqli_real_escape_string($db->connect(),$this->password))."') ";
+            $sql = "INSERT INTO Users (UserName, Email, Password) VALUES 
+            (
+                '$this->user_name',
+                '$this->email',
+                '$this->password',
+            )";
+            $result = $db->query_excute($sql);
             return $result;
         }
         //kiểm tra đăng nhập
